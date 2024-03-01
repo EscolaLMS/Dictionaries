@@ -37,7 +37,7 @@ class DictionaryDto implements DtoContract, InstantiateFromRequest
 
     public static function instantiateFromRequest(Request $request): self
     {
-        return new static(
+        return new self(
             $request->input('name'),
             $request->input('free_views_count'),
         );

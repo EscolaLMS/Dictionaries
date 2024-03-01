@@ -37,9 +37,14 @@ class UpdateDictionaryRequest extends FormRequest
         ];
     }
 
+    public function getId(): int
+    {
+        return (int) $this->route('id');
+    }
+
     public function getDictionary(): Dictionary
     {
-        return Dictionary::findOrFail($this->route('id'));
+        return Dictionary::findOrFail($this->getId());
     }
 
     public function toDto(): DictionaryDto

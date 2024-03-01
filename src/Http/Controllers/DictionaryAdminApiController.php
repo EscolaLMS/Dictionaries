@@ -40,7 +40,7 @@ class DictionaryAdminApiController extends EscolaLmsBaseController implements Di
 
     public function update(UpdateDictionaryRequest $request): JsonResponse
     {
-        $dictionary = $this->dictionaryService->update($request->route('id'), $request->toDto());
+        $dictionary = $this->dictionaryService->update($request->getId(), $request->toDto());
 
         return $this->sendResponseForResource(DictionaryResource::make($dictionary));
     }

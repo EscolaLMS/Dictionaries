@@ -15,7 +15,7 @@ use Illuminate\Support\Carbon;
  * @property string $slug
  * @property integer|null $free_views_count
  * @property Carbon $created_at
- * @property Carbon $update_at
+ * @property Carbon $updated_at
  *
  */
 class Dictionary extends Model

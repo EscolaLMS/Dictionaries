@@ -23,6 +23,6 @@ class DictionaryCriteriaDto extends BaseCriteriaDto implements DtoContract, Inst
             $criteria->push(new LikeCriterion('slug', $request->get('slug')));
         }
 
-        return new static($criteria);
+        return new self($criteria);
     }
 }
