@@ -1,6 +1,6 @@
 <?php
 
-namespace EscolaLms\Dictionaries\Tests\Api\Dictionary;
+namespace EscolaLms\Dictionaries\Tests\Api\DictionaryWord;
 
 use EscolaLms\Core\Tests\CreatesUsers;
 use EscolaLms\Dictionaries\Database\Seeders\DictionariesPermissionSeeder;
