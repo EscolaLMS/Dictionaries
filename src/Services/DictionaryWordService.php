@@ -30,7 +30,7 @@ class DictionaryWordService implements DictionaryWordServiceContract
 
     public function create(DictionaryWordDto $dto): DictionaryWord
     {
-        /** @var $dictionaryWord DictionaryWord */
+        /** @var DictionaryWord $dictionaryWord */
         $dictionaryWord = $this->dictionaryWordRepository->create($dto->toArray());
         $this->syncCategories($dictionaryWord, $dto->getCategories());
 
@@ -39,7 +39,7 @@ class DictionaryWordService implements DictionaryWordServiceContract
 
     public function update(int $id, DictionaryWordDto $dto): DictionaryWord
     {
-        /** @var $dictionaryWord DictionaryWord */
+        /** @var DictionaryWord $dictionaryWord */
         $dictionaryWord = $this->dictionaryWordRepository->update($dto->toArray(), $id);
         $this->syncCategories($dictionaryWord, $dto->getCategories());
 
