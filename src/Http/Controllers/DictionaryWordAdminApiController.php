@@ -25,7 +25,8 @@ class DictionaryWordAdminApiController extends EscolaLmsBaseController implement
     {
         $results = $this->dictionaryWordService->list($request->getCriteria(), $request->getPage(), $request->getOrder());
 
-        return $this->sendResponseForResource(DictionaryWordSimpleResource::collection($results));    }
+        return $this->sendResponseForResource(DictionaryWordSimpleResource::collection($results));
+    }
 
     public function store(CreateDictionaryWordRequest $request): JsonResponse
     {

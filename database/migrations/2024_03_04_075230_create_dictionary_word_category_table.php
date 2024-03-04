@@ -12,7 +12,8 @@ return new class extends Migration
     {
         Schema::create('dictionary_word_category', function (Blueprint $table) {
             $table->foreignIdFor(DictionaryWord::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Category::class)->constrained()->cascadeOnDelete();
+            $table->unsignedInteger('category_id');
+            $table->foreign('category_id')->on('categories')->references('id')->cascadeOnDelete();
         });
     }
 
