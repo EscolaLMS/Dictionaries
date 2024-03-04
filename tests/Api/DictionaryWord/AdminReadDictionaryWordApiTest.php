@@ -49,9 +49,11 @@ class AdminReadDictionaryWordApiTest extends TestCase
             'key2' => 'value2'
         ];
 
+        $dictionary = Dictionary::factory()->create();
         $dictionaryWord = DictionaryWord::factory()
             ->state(['data' => $data])
             ->hasAttached(Category::factory())
+            ->for($dictionary)
             ->create();
 
         $this->actingAs($this->makeAdmin(), 'api')
@@ -61,7 +63,7 @@ class AdminReadDictionaryWordApiTest extends TestCase
             ->assertJsonFragment([
                 'id' => $dictionaryWord->getKey(),
                 'word' => $dictionaryWord->word,
-                'dictionary_id' => $dictionaryWord->dictionary_id,
+                'dictionary_id' => $dictionary->getKey(),
                 'description' => $dictionaryWord->description,
                 'data' => $dictionaryWord->data,
                 'categories' => [[

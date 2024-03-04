@@ -16,9 +16,7 @@ class DictionaryWordRepository extends BaseRepository implements DictionaryWordR
 
     public function getFieldsSearchable(): array
     {
-        return [
-            'word',
-        ];
+        return [];
     }
 
     public function findAll(array $criteria, int $perPage, string $orderDirection, string $orderColumn): LengthAwarePaginator
