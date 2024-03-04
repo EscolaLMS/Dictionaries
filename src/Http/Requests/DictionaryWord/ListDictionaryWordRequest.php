@@ -1,33 +1,35 @@
 <?php
 
-namespace EscolaLms\Dictionaries\Http\Requests\Dictionary;
+namespace EscolaLms\Dictionaries\Http\Requests\DictionaryWord;
 
 use EscolaLms\Core\Dtos\OrderDto;
-use EscolaLms\Dictionaries\Dtos\DictionaryCriteriaDto;
+use EscolaLms\Dictionaries\Dtos\DictionaryWordCriteriaDto;
 use EscolaLms\Dictionaries\Dtos\PageDto;
-use EscolaLms\Dictionaries\Models\Dictionary;
+use EscolaLms\Dictionaries\Models\DictionaryWord;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 
-class ListDictionaryRequest extends FormRequest
+class ListDictionaryWordRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return Gate::allows('list', Dictionary::class);
+        return Gate::allows('list', DictionaryWord::class);
     }
 
     public function rules(): array
     {
         return [
-            'order_by' => ['sometimes', 'string', 'in:id,name,slug,created_at,updated_at'],
+            'order_by' => ['sometimes', 'string', 'in:id,word,created_at,updated_at'],
             'order' => ['sometimes', 'string', 'in:ASC,DESC'],
             'page' => ['sometimes', 'integer'],
+            'category_ids' => ['sometimes', 'array'],
+            'category_ids.*' => ['integer'],
         ];
     }
 
-    public function getCriteria(): DictionaryCriteriaDto
+    public function getCriteria(): DictionaryWordCriteriaDto
     {
-        return DictionaryCriteriaDto::instantiateFromRequest($this);
+        return DictionaryWordCriteriaDto::instantiateFromRequest($this);
     }
 
     public function getPage(): PageDto
