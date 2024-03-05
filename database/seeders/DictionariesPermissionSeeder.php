@@ -18,11 +18,7 @@ class DictionariesPermissionSeeder extends Seeder
             Permission::findOrCreate($permission, 'api');
         }
 
-        $admin->givePermissionTo(DictionariesPermissionEnum::getValues());
-
-        $student->givePermissionTo([
-            DictionariesPermissionEnum::DICTIONARY_LIST,
-            DictionariesPermissionEnum::DICTIONARY_READ,
-        ]);
+        $admin->givePermissionTo(DictionariesPermissionEnum::getAdminPermissions());
+        $student->givePermissionTo(DictionariesPermissionEnum::getStudentPermissions());
     }
 }
