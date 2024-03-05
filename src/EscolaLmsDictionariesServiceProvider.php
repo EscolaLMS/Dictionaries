@@ -3,11 +3,16 @@
 namespace EscolaLms\Dictionaries;
 
 use EscolaLms\Auth\EscolaLmsAuthServiceProvider;
+use EscolaLms\Categories\EscolaLmsCategoriesServiceProvider;
 use EscolaLms\Dictionaries\Providers\AuthServiceProvider;
 use EscolaLms\Dictionaries\Repositories\Contracts\DictionaryRepositoryContract;
+use EscolaLms\Dictionaries\Repositories\Contracts\DictionaryWordRepositoryContract;
 use EscolaLms\Dictionaries\Repositories\DictionaryRepository;
+use EscolaLms\Dictionaries\Repositories\DictionaryWordRepository;
 use EscolaLms\Dictionaries\Services\Contracts\DictionaryServiceContract;
+use EscolaLms\Dictionaries\Services\Contracts\DictionaryWordServiceContract;
 use EscolaLms\Dictionaries\Services\DictionaryService;
+use EscolaLms\Dictionaries\Services\DictionaryWordService;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -17,10 +22,12 @@ class EscolaLmsDictionariesServiceProvider extends ServiceProvider
 {
     public const SERVICES = [
         DictionaryServiceContract::class => DictionaryService::class,
+        DictionaryWordServiceContract::class => DictionaryWordService::class,
     ];
 
     public const REPOSITORIES = [
         DictionaryRepositoryContract::class => DictionaryRepository::class,
+        DictionaryWordRepositoryContract::class => DictionaryWordRepository::class,
     ];
 
     public $singletons = self::SERVICES + self::REPOSITORIES;
@@ -29,6 +36,7 @@ class EscolaLmsDictionariesServiceProvider extends ServiceProvider
     {
         $this->app->register(AuthServiceProvider::class);
         $this->app->register(EscolaLmsAuthServiceProvider::class);
+        $this->app->register(EscolaLmsCategoriesServiceProvider::class);
     }
 
     public function boot(): void

@@ -1,6 +1,7 @@
 <?php
 
 use EscolaLms\Dictionaries\Http\Controllers\DictionaryAdminApiController;
+use EscolaLms\Dictionaries\Http\Controllers\DictionaryWordAdminApiController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['auth:api'], 'prefix' => 'api/admin/dictionaries'], function () {
@@ -9,4 +10,12 @@ Route::group(['middleware' => ['auth:api'], 'prefix' => 'api/admin/dictionaries'
     Route::put('{id}', [DictionaryAdminApiController::class, 'update']);
     Route::get('{id}', [DictionaryAdminApiController::class, 'show']);
     Route::delete('{id}', [DictionaryAdminApiController::class, 'delete']);
+});
+
+Route::group(['middleware' => ['auth:api'], 'prefix' => 'api/admin/dictionary-words'], function () {
+    Route::get('/', [DictionaryWordAdminApiController::class, 'index']);
+    Route::post('/', [DictionaryWordAdminApiController::class, 'store']);
+    Route::put('{id}', [DictionaryWordAdminApiController::class, 'update']);
+    Route::get('{id}', [DictionaryWordAdminApiController::class, 'show']);
+    Route::delete('{id}', [DictionaryWordAdminApiController::class, 'delete']);
 });

@@ -5,7 +5,9 @@ namespace EscolaLms\Dictionaries\Models;
 use EscolaLms\Dictionaries\Database\Factories\DictionaryFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 
 /**
  * Class Dictionary
@@ -17,12 +19,18 @@ use Illuminate\Support\Carbon;
  * @property Carbon $created_at
  * @property Carbon $updated_at
  *
+ * @property-read Collection|DictionaryWord[] $dictionaryWords
  */
 class Dictionary extends Model
 {
     use HasFactory;
 
     protected $guarded = ['id'];
+
+    public function dictionaryWords(): HasMany
+    {
+        return $this->hasMany(DictionaryWord::class);
+    }
 
     protected static function newFactory(): DictionaryFactory
     {

@@ -5,6 +5,7 @@ namespace EscolaLms\Dictionaries\Tests\Api\Dictionary;
 use EscolaLms\Core\Tests\CreatesUsers;
 use EscolaLms\Dictionaries\Database\Seeders\DictionariesPermissionSeeder;
 use EscolaLms\Dictionaries\Models\Dictionary;
+use EscolaLms\Dictionaries\Models\DictionaryWord;
 use EscolaLms\Dictionaries\Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 
@@ -33,7 +34,10 @@ class AdminDeleteDictionaryApiTest extends TestCase
 
     public function testAdminDeleteDictionary(): void
     {
-        $dictionary = Dictionary::factory()->create();
+        /** @var DictionaryWord $dictionary */
+        $dictionary = Dictionary::factory()
+            ->has(DictionaryWord::factory()->count(10))
+            ->create();
 
         $this->actingAs($this->makeAdmin(), 'api')
             ->deleteJson('api/admin/dictionaries/' . $dictionary->getKey())
