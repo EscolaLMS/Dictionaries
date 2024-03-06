@@ -2,11 +2,11 @@
 
 namespace EscolaLms\Dictionaries\Http\Controllers\Swagger;
 
-use EscolaLms\Dictionaries\Http\Requests\DictionaryWord\CreateDictionaryWordRequest;
-use EscolaLms\Dictionaries\Http\Requests\DictionaryWord\DeleteDictionaryWordRequest;
-use EscolaLms\Dictionaries\Http\Requests\DictionaryWord\ListDictionaryWordRequest;
-use EscolaLms\Dictionaries\Http\Requests\DictionaryWord\ReadDictionaryWordRequest;
-use EscolaLms\Dictionaries\Http\Requests\DictionaryWord\UpdateDictionaryWordRequest;
+use EscolaLms\Dictionaries\Http\Requests\DictionaryWord\Admin\CreateDictionaryWordRequest;
+use EscolaLms\Dictionaries\Http\Requests\DictionaryWord\Admin\DeleteDictionaryWordRequest;
+use EscolaLms\Dictionaries\Http\Requests\DictionaryWord\Admin\ListDictionaryWordRequest;
+use EscolaLms\Dictionaries\Http\Requests\DictionaryWord\Admin\ReadDictionaryWordRequest;
+use EscolaLms\Dictionaries\Http\Requests\DictionaryWord\Admin\UpdateDictionaryWordRequest;
 use Illuminate\Http\JsonResponse;
 
 interface DictionaryWordAdminApiControllerSwagger

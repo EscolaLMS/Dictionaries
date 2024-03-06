@@ -18,9 +18,6 @@ class DictionariesPermissionEnum extends BasicEnum
     public const DICTIONARY_WORD_UPDATE = 'dictionary-word_update';
     public const DICTIONARY_WORD_DELETE = 'dictionary-word_delete';
 
-    public const DICTIONARY_LIST_SELF = 'dictionary_list-self';
-    public const DICTIONARY_READ_SELF = 'dictionary_read-self';
-
     public static function getAdminPermissions(): array
     {
         return [
@@ -34,14 +31,6 @@ class DictionariesPermissionEnum extends BasicEnum
             self::DICTIONARY_WORD_READ,
             self::DICTIONARY_WORD_UPDATE,
             self::DICTIONARY_WORD_DELETE,
-        ];
-    }
-
-    public static function getStudentPermissions(): array
-    {
-        return [
-            self::DICTIONARY_LIST_SELF,
-            self::DICTIONARY_READ_SELF,
         ];
     }
 }

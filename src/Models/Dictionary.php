@@ -5,6 +5,7 @@ namespace EscolaLms\Dictionaries\Models;
 use EscolaLms\Dictionaries\Database\Factories\DictionaryFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
@@ -30,6 +31,12 @@ class Dictionary extends Model
     public function dictionaryWords(): HasMany
     {
         return $this->hasMany(DictionaryWord::class);
+    }
+
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'dictionary_user')
+            ->using(DictionaryUser::class)->withPivotValue('end_date');
     }
 
     protected static function newFactory(): DictionaryFactory

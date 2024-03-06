@@ -7,14 +7,19 @@ use EscolaLms\Dictionaries\Dtos\DictionaryWordCriteriaDto;
 use EscolaLms\Dictionaries\Dtos\DictionaryWordDto;
 use EscolaLms\Dictionaries\Dtos\PageDto;
 use EscolaLms\Dictionaries\Models\DictionaryWord;
+use EscolaLms\Dictionaries\Repositories\Contracts\CategoryRepositoryContract;
 use EscolaLms\Dictionaries\Repositories\Contracts\DictionaryWordRepositoryContract;
 use EscolaLms\Dictionaries\Services\Contracts\DictionaryWordServiceContract;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 
 class DictionaryWordService implements DictionaryWordServiceContract
 {
 
-    public function __construct(private readonly DictionaryWordRepositoryContract $dictionaryWordRepository)
+    public function __construct(
+        private readonly DictionaryWordRepositoryContract $dictionaryWordRepository,
+        private readonly CategoryRepositoryContract $categoryRepository
+    )
     {
     }
 
@@ -49,6 +54,11 @@ class DictionaryWordService implements DictionaryWordServiceContract
     public function delete(DictionaryWord $dictionary): void
     {
         $this->dictionaryWordRepository->remove($dictionary);
+    }
+
+    public function categories(DictionaryWordCriteriaDto $criteriaDto): Collection
+    {
+        return $this->categoryRepository->getCategoriesFilteredByDictionaryWord($criteriaDto->toArray());
     }
 
     private function syncCategories(DictionaryWord $dictionaryWord, array $categoryIds): void
