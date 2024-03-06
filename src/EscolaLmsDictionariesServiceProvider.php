@@ -5,6 +5,8 @@ namespace EscolaLms\Dictionaries;
 use EscolaLms\Auth\EscolaLmsAuthServiceProvider;
 use EscolaLms\Categories\EscolaLmsCategoriesServiceProvider;
 use EscolaLms\Dictionaries\Providers\AuthServiceProvider;
+use EscolaLms\Dictionaries\Repositories\CategoryRepository;
+use EscolaLms\Dictionaries\Repositories\Contracts\CategoryRepositoryContract;
 use EscolaLms\Dictionaries\Repositories\Contracts\DictionaryRepositoryContract;
 use EscolaLms\Dictionaries\Repositories\Contracts\DictionaryWordRepositoryContract;
 use EscolaLms\Dictionaries\Repositories\DictionaryRepository;
@@ -26,6 +28,7 @@ class EscolaLmsDictionariesServiceProvider extends ServiceProvider
     ];
 
     public const REPOSITORIES = [
+        CategoryRepositoryContract::class => CategoryRepository::class,
         DictionaryRepositoryContract::class => DictionaryRepository::class,
         DictionaryWordRepositoryContract::class => DictionaryWordRepository::class,
     ];

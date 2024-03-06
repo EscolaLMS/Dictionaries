@@ -8,6 +8,7 @@ use EscolaLms\Dictionaries\Dtos\DictionaryWordDto;
 use EscolaLms\Dictionaries\Dtos\PageDto;
 use EscolaLms\Dictionaries\Models\DictionaryWord;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 
 interface DictionaryWordServiceContract
 {
@@ -15,4 +16,5 @@ interface DictionaryWordServiceContract
     public function create(DictionaryWordDto $dto): DictionaryWord;
     public function update(int $id, DictionaryWordDto $dto): DictionaryWord;
     public function delete(DictionaryWord $dictionary): void;
+    public function categories(DictionaryWordCriteriaDto $criteriaDto): Collection;
 }

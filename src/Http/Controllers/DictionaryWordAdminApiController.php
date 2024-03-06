@@ -4,11 +4,11 @@ namespace EscolaLms\Dictionaries\Http\Controllers;
 
 use EscolaLms\Core\Http\Controllers\EscolaLmsBaseController;
 use EscolaLms\Dictionaries\Http\Controllers\Swagger\DictionaryWordAdminApiControllerSwagger;
-use EscolaLms\Dictionaries\Http\Requests\DictionaryWord\CreateDictionaryWordRequest;
-use EscolaLms\Dictionaries\Http\Requests\DictionaryWord\DeleteDictionaryWordRequest;
-use EscolaLms\Dictionaries\Http\Requests\DictionaryWord\ListDictionaryWordRequest;
-use EscolaLms\Dictionaries\Http\Requests\DictionaryWord\ReadDictionaryWordRequest;
-use EscolaLms\Dictionaries\Http\Requests\DictionaryWord\UpdateDictionaryWordRequest;
+use EscolaLms\Dictionaries\Http\Requests\DictionaryWord\Admin\CreateDictionaryWordRequest;
+use EscolaLms\Dictionaries\Http\Requests\DictionaryWord\Admin\DeleteDictionaryWordRequest;
+use EscolaLms\Dictionaries\Http\Requests\DictionaryWord\Admin\ListDictionaryWordRequest;
+use EscolaLms\Dictionaries\Http\Requests\DictionaryWord\Admin\ReadDictionaryWordRequest;
+use EscolaLms\Dictionaries\Http\Requests\DictionaryWord\Admin\UpdateDictionaryWordRequest;
 use EscolaLms\Dictionaries\Http\Resources\DictionaryWordResource;
 use EscolaLms\Dictionaries\Http\Resources\DictionaryWordSimpleResource;
 use EscolaLms\Dictionaries\Services\Contracts\DictionaryWordServiceContract;

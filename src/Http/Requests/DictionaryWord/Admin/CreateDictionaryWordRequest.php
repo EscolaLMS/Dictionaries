@@ -1,6 +1,6 @@
 <?php
 
-namespace EscolaLms\Dictionaries\Http\Requests\DictionaryWord;
+namespace EscolaLms\Dictionaries\Http\Requests\DictionaryWord\Admin;
 
 use EscolaLms\Dictionaries\Dtos\DictionaryWordDto;
 use EscolaLms\Dictionaries\Models\DictionaryWord;

@@ -1,6 +1,6 @@
 <?php
 
-namespace EscolaLms\Dictionaries\Http\Requests\DictionaryWord;
+namespace EscolaLms\Dictionaries\Http\Requests\DictionaryWord\Admin;
 
 use EscolaLms\Dictionaries\Models\DictionaryWord;
 use Illuminate\Foundation\Http\FormRequest;

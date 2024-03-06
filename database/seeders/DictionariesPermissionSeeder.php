@@ -11,7 +11,6 @@ class DictionariesPermissionSeeder extends Seeder
 {
     public function run(): void
     {
-        $student = Role::findOrCreate('student', 'api');
         $admin = Role::findOrCreate('admin', 'api');
 
         foreach (DictionariesPermissionEnum::getValues() as $permission) {
@@ -19,6 +18,5 @@ class DictionariesPermissionSeeder extends Seeder
         }
 
         $admin->givePermissionTo(DictionariesPermissionEnum::getAdminPermissions());
-        $student->givePermissionTo(DictionariesPermissionEnum::getStudentPermissions());
     }
 }

@@ -17,6 +17,10 @@ class DictionaryWordCriteriaDto  extends BaseCriteriaDto implements DtoContract,
     {
         $criteria = new Collection();
 
+        if ($request->route('slug')) {
+            $criteria->push(new HasCriterion('dictionary', fn ($query) => $query->where('slug', $request->route('slug'))));
+        }
+
         if ($request->get('word')) {
             $criteria->push(new LikeCriterion('word', $request->get('word')));
         }

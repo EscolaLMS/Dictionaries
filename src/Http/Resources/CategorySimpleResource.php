@@ -28,10 +28,16 @@ class CategorySimpleResource extends JsonResource
 {
     public function toArray($request): array
     {
-        return [
+        $result = [
             'id' => $this->getKey(),
             'name' => $this->name,
             'name_with_breadcrumbs' => $this->name_with_breadcrumbs,
         ];
+
+        if ($this->dictionary_words_count) {
+            $result['dictionary_words_count'] = $this->dictionary_words_count;
+        }
+
+        return $result;
     }
 }
