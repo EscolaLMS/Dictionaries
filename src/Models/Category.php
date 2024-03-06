@@ -11,7 +11,7 @@ use Illuminate\Support\Collection;
 /**
  * Class EscolaLms\Dictionaries\Models\Category
  *
- * @property-read int dictionary_words_count
+ * @property-read int $dictionary_words_count
  * @property-read Collection|DictionaryWord[] $dictionaryWords
  */
 class Category extends BaseCategory
