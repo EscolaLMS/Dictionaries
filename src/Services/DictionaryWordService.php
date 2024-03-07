@@ -73,7 +73,7 @@ class DictionaryWordService implements DictionaryWordServiceContract
 
         if ($userId) {
             /** @var ?DictionaryUser $dictionaryUser */
-            $dictionaryUser = $word->dictionary->users()->where('user_id', $userId)->first()?->pivot;
+            $dictionaryUser = $word->dictionary->users()->where('user_id', $userId)->first()?->getRelationValue('pivot');
             if ($dictionaryUser && (!$dictionaryUser->end_date || $dictionaryUser->end_date >= Carbon::now())) {
                 return $word;
             }
