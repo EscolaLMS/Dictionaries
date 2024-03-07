@@ -9,6 +9,7 @@ use EscolaLms\Dictionaries\Dtos\PageDto;
 use EscolaLms\Dictionaries\Models\DictionaryWord;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
+use Symfony\Component\HttpKernel\Exception\TooManyRequestsHttpException;
 
 interface DictionaryWordServiceContract
 {
@@ -17,4 +18,9 @@ interface DictionaryWordServiceContract
     public function update(int $id, DictionaryWordDto $dto): DictionaryWord;
     public function delete(DictionaryWord $dictionary): void;
     public function categories(DictionaryWordCriteriaDto $criteriaDto): Collection;
+
+    /**
+     * @throws TooManyRequestsHttpException
+     */
+    public function find(int $id, ?int $userId): DictionaryWord;
 }

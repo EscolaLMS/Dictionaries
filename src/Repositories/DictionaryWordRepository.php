@@ -25,4 +25,10 @@ class DictionaryWordRepository extends BaseRepository implements DictionaryWordR
             ->orderBy($orderColumn, $orderDirection)
             ->paginate($perPage);
     }
+
+    public function findOrFail(int $id): DictionaryWord
+    {
+        /** @var DictionaryWord */
+        return $this->model->newQuery()->findOrFail($id);
+    }
 }

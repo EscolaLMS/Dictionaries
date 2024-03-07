@@ -4,6 +4,7 @@ namespace EscolaLms\Dictionaries\Http\Controllers\Swagger;
 
 use EscolaLms\Dictionaries\Http\Requests\DictionaryWord\ListDictionaryWordRequest;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 interface DictionaryWordApiControllerSwagger
 {
@@ -64,6 +65,58 @@ interface DictionaryWordApiControllerSwagger
      * )
      */
     public function index(ListDictionaryWordRequest $request): JsonResponse;
+
+    /**
+     * @OA\Get(
+     *      path="/api/dictionaries/{slug}/words/{id}",
+     *      summary="Display the specified Dictionary Word",
+     *      tags={"Dictionaries"},
+     *      @OA\Parameter(
+     *          name="slug",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="string",
+     *          ),
+     *      ),
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="id of Dictionary Word",
+     *          @OA\Schema(
+     *             type="integer",
+     *         ),
+     *          required=true,
+     *          in="path"
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successfull operation",
+     *          @OA\MediaType(
+     *              mediaType="application/json",
+     *              @OA\Schema(
+     *                  type="object",
+     *                  @OA\Property(
+     *                      property="success",
+     *                      type="boolean"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="message",
+     *                      type="string"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="data",
+     *                      ref="#/components/schemas/DictionaryWordResource"
+     *                  ),
+     *              )
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=429,
+     *          description="Too Many Requests",
+     *      )
+     * )
+     */
+    public function show(Request $request, string $slug, int $id): JsonResponse;
 
     /**
      * @OA\Get(
