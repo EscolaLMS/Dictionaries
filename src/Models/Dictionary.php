@@ -36,7 +36,7 @@ class Dictionary extends Model
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'dictionary_user')
-            ->using(DictionaryUser::class)->withPivotValue('end_date');
+            ->using(DictionaryUser::class)->withPivot(['end_date']);
     }
 
     protected static function newFactory(): DictionaryFactory

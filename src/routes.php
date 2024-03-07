@@ -24,4 +24,5 @@ Route::group(['middleware' => ['auth:api'], 'prefix' => 'api/admin/dictionary-wo
 Route::group(['prefix' => 'api/dictionaries/{slug}/words'], function () {
     Route::get('/', [DictionaryWordApiController::class, 'index']);
     Route::get('/categories', [DictionaryWordApiController::class, 'categories']);
+    Route::get('/{id}', [DictionaryWordApiController::class, 'show']);
 });
