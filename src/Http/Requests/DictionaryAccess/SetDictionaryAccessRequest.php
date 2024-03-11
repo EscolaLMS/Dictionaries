@@ -3,6 +3,7 @@
 namespace EscolaLms\Dictionaries\Http\Requests\DictionaryAccess;
 
 use EscolaLms\Dictionaries\Dtos\DictionaryAccessDto;
+use Illuminate\Support\Facades\Gate;
 
 /**
  * @OA\Schema(
@@ -27,6 +28,11 @@ use EscolaLms\Dictionaries\Dtos\DictionaryAccessDto;
  */
 class SetDictionaryAccessRequest extends ListDictionaryAccessRequest
 {
+    public function authorize(): bool
+    {
+        return Gate::allows('update', $this->getDictionary());
+    }
+
     public function rules(): array
     {
         return [

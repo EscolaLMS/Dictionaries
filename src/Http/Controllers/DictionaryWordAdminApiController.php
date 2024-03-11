@@ -32,7 +32,7 @@ class DictionaryWordAdminApiController extends EscolaLmsBaseController implement
     {
         $dictionary = $this->dictionaryWordService->create($request->toDto());
 
-        return $this->sendResponseForResource(DictionaryWordResource::make($dictionary));
+        return $this->sendResponseForResource(DictionaryWordResource::make($dictionary), __('Dictionary word created successfully'));
     }
 
     public function show(ReadDictionaryWordRequest $request): JsonResponse
@@ -44,7 +44,7 @@ class DictionaryWordAdminApiController extends EscolaLmsBaseController implement
     {
         $dictionary = $this->dictionaryWordService->update($request->getId(), $request->toDto());
 
-        return $this->sendResponseForResource(DictionaryWordResource::make($dictionary));
+        return $this->sendResponseForResource(DictionaryWordResource::make($dictionary), __('Dictionary word updated successfully'));
     }
 
     public function delete(DeleteDictionaryWordRequest $request): JsonResponse

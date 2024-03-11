@@ -10,7 +10,7 @@ class ListDictionaryAccessRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return Gate::allows('update', $this->getDictionary());
+        return Gate::allows('read', $this->getDictionary());
     }
 
     public function rules(): array

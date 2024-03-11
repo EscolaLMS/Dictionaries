@@ -30,7 +30,7 @@ class DictionaryAdminApiController extends EscolaLmsBaseController implements Di
     {
         $dictionary = $this->dictionaryService->create($request->toDto());
 
-        return $this->sendResponseForResource(DictionaryResource::make($dictionary));
+        return $this->sendResponseForResource(DictionaryResource::make($dictionary), __('Dictionary created successfully'));
     }
 
     public function show(ReadDictionaryRequest $request): JsonResponse
@@ -42,7 +42,7 @@ class DictionaryAdminApiController extends EscolaLmsBaseController implements Di
     {
         $dictionary = $this->dictionaryService->update($request->getId(), $request->toDto());
 
-        return $this->sendResponseForResource(DictionaryResource::make($dictionary));
+        return $this->sendResponseForResource(DictionaryResource::make($dictionary), __('Dictionary updated successfully'));
     }
 
     public function delete(DeleteDictionaryRequest $request): JsonResponse
