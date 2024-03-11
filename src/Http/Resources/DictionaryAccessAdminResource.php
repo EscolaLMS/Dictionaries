@@ -32,8 +32,8 @@ class DictionaryAccessAdminResource extends JsonResource
         return [
             'user' => [
                 'id' => $this->user_id,
-                'name' => $this->user?->name,
-                'email' => $this->user?->email,
+                'name' => $this->user->name,
+                'email' => $this->user->email,
             ],
             'end_date' => $this->end_date,
             'is_active' => $this->is_active,
