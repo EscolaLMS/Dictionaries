@@ -5,6 +5,147 @@
         "version": "0.0.1"
     },
     "paths": {
+        "/api/admin/dictionaries/{id}/access": {
+            "get": {
+                "tags": [
+                    "Admin Dictionaries"
+                ],
+                "summary": "Get list of users with access to the dictionary",
+                "operationId": "dc52c4e3add0b71ace1d2540f319faa2",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Dictionary",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfull operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/DictionaryAccessAdminResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Admin Dictionaries"
+                ],
+                "summary": "Add users with access to the dictionary",
+                "operationId": "720aabf88054ddd26918eb9501b2565d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Dictionary",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SetDictionaryAccessRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfull operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            }
+        },
+        "/api/dictionaries/access": {
+            "get": {
+                "tags": [
+                    "Dictionaries"
+                ],
+                "summary": "Display my dictionaries",
+                "operationId": "ceea7feaa193c491a0c41583f155abb1",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/DictionaryAccessResource"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            }
+        },
         "/api/admin/dictionaries": {
             "get": {
                 "tags": [
@@ -815,6 +956,29 @@
                 },
                 "type": "object"
             },
+            "SetDictionaryAccessRequest": {
+                "required": [
+                    "users"
+                ],
+                "properties": {
+                    "users": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "user_id": {
+                                    "type": "integer"
+                                },
+                                "end_date": {
+                                    "type": "string",
+                                    "format": "date-time"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
             "CreateDictionaryWordRequest": {
                 "required": [
                     "word",
@@ -853,6 +1017,42 @@
                     },
                     "name_with_breadcrumbs": {
                         "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "DictionaryAccessAdminResource": {
+                "properties": {
+                    "end_date": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "is_active": {
+                        "type": "boolean"
+                    },
+                    "user": {
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "DictionaryAccessResource": {
+                "properties": {
+                    "dictionary_id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "slug": {
+                        "type": "string"
+                    },
+                    "end_date": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "is_active": {
+                        "type": "boolean"
                     }
                 },
                 "type": "object"
