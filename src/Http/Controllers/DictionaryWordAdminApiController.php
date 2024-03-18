@@ -6,13 +6,16 @@ use EscolaLms\Core\Http\Controllers\EscolaLmsBaseController;
 use EscolaLms\Dictionaries\Http\Controllers\Swagger\DictionaryWordAdminApiControllerSwagger;
 use EscolaLms\Dictionaries\Http\Requests\DictionaryWord\Admin\CreateDictionaryWordRequest;
 use EscolaLms\Dictionaries\Http\Requests\DictionaryWord\Admin\DeleteDictionaryWordRequest;
+use EscolaLms\Dictionaries\Http\Requests\DictionaryWord\Admin\ImportDictionaryWordRequest;
 use EscolaLms\Dictionaries\Http\Requests\DictionaryWord\Admin\ListDictionaryWordRequest;
 use EscolaLms\Dictionaries\Http\Requests\DictionaryWord\Admin\ReadDictionaryWordRequest;
 use EscolaLms\Dictionaries\Http\Requests\DictionaryWord\Admin\UpdateDictionaryWordRequest;
 use EscolaLms\Dictionaries\Http\Resources\DictionaryWordResource;
 use EscolaLms\Dictionaries\Http\Resources\DictionaryWordSimpleResource;
+use EscolaLms\Dictionaries\Imports\DictionaryWordsImport;
 use EscolaLms\Dictionaries\Services\Contracts\DictionaryWordServiceContract;
 use Illuminate\Http\JsonResponse;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DictionaryWordAdminApiController extends EscolaLmsBaseController implements DictionaryWordAdminApiControllerSwagger
 {
@@ -52,5 +55,12 @@ class DictionaryWordAdminApiController extends EscolaLmsBaseController implement
         $this->dictionaryWordService->delete($request->getDictionaryWord());
 
         return $this->sendSuccess(__('Dictionary word deleted successfully'));
+    }
+
+    public function import(ImportDictionaryWordRequest $request): JsonResponse
+    {
+        Excel::import((new DictionaryWordsImport($request->get('dictionary_id'))), $request->file('file'));
+
+        return $this->sendSuccess( __('Dictionary word imported successfully'));
     }
 }

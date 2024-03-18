@@ -4,6 +4,7 @@ namespace EscolaLms\Dictionaries\Http\Controllers\Swagger;
 
 use EscolaLms\Dictionaries\Http\Requests\DictionaryWord\Admin\CreateDictionaryWordRequest;
 use EscolaLms\Dictionaries\Http\Requests\DictionaryWord\Admin\DeleteDictionaryWordRequest;
+use EscolaLms\Dictionaries\Http\Requests\DictionaryWord\Admin\ImportDictionaryWordRequest;
 use EscolaLms\Dictionaries\Http\Requests\DictionaryWord\Admin\ListDictionaryWordRequest;
 use EscolaLms\Dictionaries\Http\Requests\DictionaryWord\Admin\ReadDictionaryWordRequest;
 use EscolaLms\Dictionaries\Http\Requests\DictionaryWord\Admin\UpdateDictionaryWordRequest;
@@ -282,4 +283,41 @@ interface DictionaryWordAdminApiControllerSwagger
      * )
      */
     public function delete(DeleteDictionaryWordRequest $request): JsonResponse;
+
+    /**
+     * @OA\Post(
+     *      path="/api/admin/dictionary-words/import",
+     *      summary="Import dictionary words from file",
+     *      tags={"Admin Dictionary Words"},
+     *      security={
+     *          {"passport": {}},
+     *      },
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\MediaType(
+     *              mediaType="multipart/form-data",
+     *              @OA\Schema(ref="#/components/schemas/ImportDictionaryWordRequest")
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="Successfull operation",
+     *          @OA\MediaType(
+     *              mediaType="application/json",
+     *              @OA\Schema(
+     *                  type="object",
+     *                  @OA\Property(
+     *                      property="success",
+     *                      type="boolean"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="message",
+     *                      type="string"
+     *                  ),
+     *              )
+     *          )
+     *      )
+     * )
+     */
+    public function import(ImportDictionaryWordRequest $request): JsonResponse;
 }
