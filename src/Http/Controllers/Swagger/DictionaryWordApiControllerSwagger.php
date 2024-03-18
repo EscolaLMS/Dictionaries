@@ -23,7 +23,16 @@ interface DictionaryWordApiControllerSwagger
      *       ),
      *      @OA\Parameter(
      *          name="word",
-     *          description="word %LIKE%",
+     *          description="word %ILIKE%",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string",
+     *          ),
+     *      ),
+     *      @OA\Parameter(
+     *          name="word_start",
+     *          description="word ILIKE%",
      *          required=false,
      *          in="query",
      *          @OA\Schema(
@@ -133,7 +142,16 @@ interface DictionaryWordApiControllerSwagger
      *       ),
      *      @OA\Parameter(
      *          name="word",
-     *          description="word %LIKE%",
+     *          description="word %ILIKE%",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string",
+     *          ),
+     *      ),
+     *      @OA\Parameter(
+     *          name="word_start",
+     *          description="word ILIKE%",
      *          required=false,
      *          in="query",
      *          @OA\Schema(
@@ -148,7 +166,7 @@ interface DictionaryWordApiControllerSwagger
      *               type="array",
      *               @OA\Items(type="number")
      *           ),
-     *       ),
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="successful operation",

@@ -74,4 +74,35 @@ class ListDictionaryWordApiTest extends TestCase
                 ],
             ]);
     }
+
+    public function testListDictionaryWordsFiltering(): void
+    {
+        $dictionary = Dictionary::factory()->create();
+
+        DictionaryWord::factory()
+            ->count(4)
+            ->sequence(
+                ['dictionary_id' => $dictionary->getKey(), 'word' => 'Test1'],
+                ['dictionary_id' => $dictionary->getKey(), 'word' => 'test12'],
+                ['dictionary_id' => $dictionary->getKey(), 'word' => 'Test3'],
+                ['dictionary_id' => $dictionary->getKey(), 'word' => 'test321'],
+            )
+            ->create();
+
+        $this->getJson('/api/dictionaries/' . $dictionary->slug . '/words?word=test')
+            ->assertOk()
+            ->assertJsonCount(4, 'data');
+
+        $this->getJson('/api/dictionaries/' . $dictionary->slug . '/words?word=st1')
+            ->assertOk()
+            ->assertJsonCount(2, 'data');
+
+        $this->getJson('/api/dictionaries/' . $dictionary->slug . '/words?word_start=st1')
+            ->assertOk()
+            ->assertJsonCount(0, 'data');
+
+        $this->getJson('/api/dictionaries/' . $dictionary->slug . '/words?word_start=test3')
+            ->assertOk()
+            ->assertJsonCount(2, 'data');
+    }
 }
