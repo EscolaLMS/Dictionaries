@@ -4,7 +4,6 @@ namespace EscolaLms\Dictionaries\Policies;
 
 use EscolaLms\Auth\Models\User;
 use EscolaLms\Dictionaries\Enums\DictionariesPermissionEnum;
-use EscolaLms\Dictionaries\Models\Dictionary;
 use EscolaLms\Dictionaries\Models\DictionaryWord;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -35,5 +34,10 @@ class DictionaryWordPolicy
     public function delete(User $user, DictionaryWord $dictionaryWord): bool
     {
         return $user->can(DictionariesPermissionEnum::DICTIONARY_WORD_DELETE);
+    }
+
+    public function import(User $user): bool
+    {
+        return $user->can(DictionariesPermissionEnum::DICTIONARY_WORD_IMPORT);
     }
 }

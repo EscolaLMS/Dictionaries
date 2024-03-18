@@ -23,6 +23,7 @@ Route::group(['middleware' => ['auth:api'], 'prefix' => 'api/admin/dictionaries'
 Route::group(['middleware' => ['auth:api'], 'prefix' => 'api/admin/dictionary-words'], function () {
     Route::get('/', [DictionaryWordAdminApiController::class, 'index']);
     Route::post('/', [DictionaryWordAdminApiController::class, 'store']);
+    Route::post('/import', [DictionaryWordAdminApiController::class, 'import']);
     Route::put('{id}', [DictionaryWordAdminApiController::class, 'update']);
     Route::get('{id}', [DictionaryWordAdminApiController::class, 'show']);
     Route::delete('{id}', [DictionaryWordAdminApiController::class, 'delete']);

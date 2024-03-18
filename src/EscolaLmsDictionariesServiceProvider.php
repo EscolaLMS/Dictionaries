@@ -20,6 +20,7 @@ use EscolaLms\Dictionaries\Services\DictionaryAccessService;
 use EscolaLms\Dictionaries\Services\DictionaryService;
 use EscolaLms\Dictionaries\Services\DictionaryWordService;
 use Illuminate\Support\ServiceProvider;
+use Maatwebsite\Excel\ExcelServiceProvider;
 
 /**
  * SWAGGER_VERSION
@@ -46,6 +47,7 @@ class EscolaLmsDictionariesServiceProvider extends ServiceProvider
         $this->app->register(AuthServiceProvider::class);
         $this->app->register(EscolaLmsAuthServiceProvider::class);
         $this->app->register(EscolaLmsCategoriesServiceProvider::class);
+        $this->app->register(ExcelServiceProvider::class);
     }
 
     public function boot(): void
