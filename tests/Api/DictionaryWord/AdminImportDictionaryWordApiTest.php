@@ -2,10 +2,10 @@
 
 namespace EscolaLms\Dictionaries\Tests\Api\DictionaryWord;
 
-use App\Models\Dictionary;
 use EscolaLms\Core\Tests\CreatesUsers;
 use EscolaLms\Dictionaries\Database\Seeders\DictionariesPermissionSeeder;
 use EscolaLms\Dictionaries\Models\Category;
+use EscolaLms\Dictionaries\Models\Dictionary;
 use EscolaLms\Dictionaries\Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\UploadedFile;
