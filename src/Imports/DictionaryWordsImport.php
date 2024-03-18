@@ -24,7 +24,7 @@ class DictionaryWordsImport implements ToModel, WithValidation, SkipsEmptyRows, 
             'word' => $row[0],
         ], [
             'description' => $row[1],
-            'data' => $row[3],
+            'data' => ['descriptions' => $row[3]],
         ]);
 
         $categories = Category::query()->whereIn('name', $row[2])->get();
