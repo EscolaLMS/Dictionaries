@@ -14,6 +14,6 @@ class ILikeCriterion extends Criterion
             return $query->where($this->key, 'ILIKE', "%$this->value%");
         }
 
-        return $query->whereRaw("LOWER($this->key) = ?", "%$this->value%");
+        return $query->where(DB::raw("lower($this->key)"), 'like', '%' . strtolower($this->value) . '%');
     }
 }
