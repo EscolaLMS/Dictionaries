@@ -51,7 +51,6 @@ class AdminImportDictionaryWordApiTest extends TestCase
                     null,
                     true
                 ),
-
             ])
             ->assertUnprocessable();
     }

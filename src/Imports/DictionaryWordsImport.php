@@ -36,7 +36,7 @@ class DictionaryWordsImport implements ToModel, WithValidation, SkipsEmptyRows, 
     public function rules(): array
     {
         return [
-            '*.0' => ['required', 'string', 'max:255'],
+            '*.0' => ['required', 'max:255'],
             '*.1' => ['nullable', 'string'],
             '*.2' => ['nullable', 'array'],
             '*.2.*' => ['string', 'exists:categories,name'],
