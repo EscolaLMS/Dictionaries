@@ -75,4 +75,21 @@ class AdminCreateDictionaryWordApiTest extends TestCase
             ])
             ->assertJsonCount(3, 'data.categories');
     }
+
+    public function testAdminCreateDictionaryWordWithNullDescription(): void
+    {
+        $dictionaryWordData = DictionaryWord::factory()->make();
+        $this->actingAs($this->makeAdmin(), 'api')
+            ->postJson('api/admin/dictionary-words', [
+                ...$dictionaryWordData->toArray(),
+               'description' => null,
+            ])
+            ->assertCreated()
+            ->assertJsonFragment([
+                'word' => $dictionaryWordData->word,
+                'dictionary_id' => $dictionaryWordData->dictionary_id,
+                'description' => null,
+                'data' => $dictionaryWordData->data,
+            ]);
+    }
 }
